@@ -1,0 +1,44 @@
+.background_image {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: 1;
+}
+.background_image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 50%;
+  min-height: 50%;
+}
+
+.content {
+    margin-top: 10em;
+    text-align: center;
+    position: relative  ;
+    z-index: 2;
+}
+.infobox {
+    line-height:2;
+}
+
+.infobox i {
+    margin: 3px 10px 0px 0px;
+}
+.hero-unit .topright{
+    position: absolute;
+    top:10px;
+    right: 10px;
+}
+.modal.fade.in {
+    z-index: 3;
+}
+
+.modal-backdrop {
+    z-index: 2;
+}
