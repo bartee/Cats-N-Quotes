@@ -30,6 +30,9 @@
 .infobox i {
     margin: 3px 10px 0px 0px;
 }
+.hero-unit {
+    background-color: rgba(255,255,255,0.7);
+}
 .hero-unit .topright{
     position: absolute;
     top:10px;
