@@ -5,7 +5,8 @@
     <div class="hero-unit">
         <a href="#infoBlock" role="button" class="btn btn-warning topright" data-toggle="modal"><i class="icon-info-sign"></i></a>
         <p class="">
-            <img src="{{ quote.avatar }}" alt="" />
+
+            {{ quote.avatar_html| safe }}
         </p>
         <h1>{{ quote.quote }}</h1>
         {% if quote.comeback %}

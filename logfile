@@ -1,3 +1,16 @@
 LOG:  database system was shut down at 2013-07-07 08:31:07 CEST
 LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
+ERROR:  column quotes_quote.author_id does not exist at character 114
+STATEMENT:  SELECT "quotes_quote"."id", "quotes_quote"."quote", "quotes_quote"."comeback", "quotes_quote"."original_author", "quotes_quote"."author_id", "quotes_quote"."pub_date" FROM "quotes_quote" ORDER BY "quotes_quote"."id" DESC
+ERROR:  column quotes_quote.author_id does not exist at character 114
+STATEMENT:  SELECT "quotes_quote"."id", "quotes_quote"."quote", "quotes_quote"."comeback", "quotes_quote"."original_author", "quotes_quote"."author_id", "quotes_quote"."pub_date" FROM "quotes_quote" ORDER BY "quotes_quote"."id" DESC LIMIT 21
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  SELECT "quotes_quote"."id", "quotes_quote"."quote", "quotes_quote"."comeback", "quotes_quote"."original_author", "quotes_quote"."author_id", "quotes_quote"."pub_date" FROM "quotes_quote" ORDER BY "quotes_quote"."id" DESC LIMIT 21
+ERROR:  relation "south_migrationhistory" does not exist at character 154
+STATEMENT:  SELECT "south_migrationhistory"."id", "south_migrationhistory"."app_name", "south_migrationhistory"."migration", "south_migrationhistory"."applied" FROM "south_migrationhistory" WHERE "south_migrationhistory"."applied" IS NOT NULL ORDER BY "south_migrationhistory"."applied" ASC
+LOG:  unexpected EOF on client connection with an open transaction
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down
