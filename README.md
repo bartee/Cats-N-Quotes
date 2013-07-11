@@ -1,4 +1,4 @@
-RandomQuote
+Cats-N-Quotes
 ===========
 
 A Django-app that renders a random quote.
