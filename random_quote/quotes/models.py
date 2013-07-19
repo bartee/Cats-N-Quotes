@@ -26,6 +26,16 @@ class Quote(models.Model):
         value = hashlib.md5(email)
         return 'http://www.gravatar.com/avatar/%s' % value.hexdigest()
 
+    @property
+    def authorname(self):  
+        admin_user = User.objects.get(pk=1)
+        user= self.original_author.split('@')
+        username = user[0]
+
+        if self.author != admin_user:
+            username = self.author.first_name + ' ' + self.author.last_name
+        return username
+
 
     def avatar_html(self):
         admin_user = User.objects.get(pk=1)

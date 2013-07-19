@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-
+{% block pagetitle %}
+    {{ quote.authorname }}'s Fabulous Quotes - and a picture of cats
+{% endblock %}
 {% block content %}
 
     <div class="hero-unit">
@@ -9,7 +11,7 @@
         </p>
         <h1>{{ quote.quote }}</h1>
         {% if quote.comeback %}
-            <p>{{ quote.comeback }}</p>
+            <h3>{{ quote.comeback }}</h3>
         {% endif %}
         <br/>
         <p>
