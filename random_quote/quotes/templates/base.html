@@ -1,9 +1,10 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Cats - n - Quotes</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.css" />
-    <link rel="stylesheet" href="/static/css/base.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
 </head>
 <body >
 
@@ -14,7 +15,7 @@
     {% block footercontent %}
     {% endblock %}
     <div class="background_image"><img src="{{ background_image }}" /></div>
-    <script type="text/javascript" src="/static/js/jquery.1.10.2.js"></script>
-    <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.1.10.2.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
 </body>
 </html>
