@@ -17,10 +17,10 @@ class HomeView(TemplateView):
 
         """
 
-        number_of_records = Quote.objects.count()
-        random_index = int(random()*number_of_records)+1
+        number_of_records = Quote.objects.all().values('id')
+        from random import choice
+        random_index = choice(number_of_records).get('id')
         quote = Quote.objects.get(pk=random_index)
-
 
         context = super(HomeView,self).get_context_data(**kwargs)
         context['quote'] = quote
