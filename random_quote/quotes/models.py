@@ -27,7 +27,7 @@ class Quote(models.Model):
         return 'http://www.gravatar.com/avatar/%s' % value.hexdigest()
 
     @property
-    def authorname(self):  
+    def authorname(self):
         admin_user = User.objects.get(pk=1)
         user= self.original_author.split('@')
         username = user[0]
@@ -40,7 +40,7 @@ class Quote(models.Model):
     def avatar_html(self):
         admin_user = User.objects.get(pk=1)
         if self.author != admin_user:
-            return u'<img src="%s" title="%s"/>' % (self.avatar, self.author.first_name+" "+self.author.last_name)
+            return u'<img src="%s" title="%s" width="160"/>' % (self.avatar, self.author.first_name+" "+self.author.last_name)
         return u'<img src="%s" />' % self.avatar
 
     avatar_html.allow_tags = True
