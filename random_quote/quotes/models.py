@@ -24,7 +24,7 @@ class Quote(models.Model):
             email = self.author.email
         import hashlib
         value = hashlib.md5(email)
-        return 'http://www.gravatar.com/avatar/%s' % value.hexdigest()
+        return 'http://www.gravatar.com/avatar/%s' % value.hexdigest() + '?s=200'
 
     @property
     def authorname(self):
