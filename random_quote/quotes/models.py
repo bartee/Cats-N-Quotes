@@ -45,4 +45,10 @@ class Quote(models.Model):
 
     avatar_html.allow_tags = True
 
+class BackgroundImage(models.Model):
+    url = models.URLField(max_length=200)
 
+    def background_thumb(self):
+        return u'<img src="%s" width="100" />' % self.url
+
+    background_thumb.allow_tags = True
