@@ -1,7 +1,7 @@
 __author__ = 'bartstroeken'
 
 
-from quotes.models import Quote
+from quotes.models import Quote, BackgroundImage
 from random import random
 from django.views.generic.base import TemplateView
 
@@ -18,11 +18,17 @@ class HomeView(TemplateView):
         """
 
         number_of_records = Quote.objects.all().values('id')
-        from random import choice
+        from random import choice, randint
         random_index = choice(number_of_records).get('id')
         quote = Quote.objects.get(pk=random_index)
+        # Background
+        number_of_records = BackgroundImage.objects.all().values('id')
+        from random import choice, randint
+        random_index = choice(number_of_records).get('id')
+        background = BackgroundImage.objects.get(pk=random_index)
 
         context = super(HomeView,self).get_context_data(**kwargs)
         context['quote'] = quote
-        context['background_image'] = 'http://lorempixel.com/1000/500/cats/'
+        context['background_image'] = background.url
+
         return context
