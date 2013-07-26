@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block pagetitle %}
+    {{ quote.authorname }}'s Fabulous Quotes - and a picture of cats
+{% endblock %}
+{% block content %}
+
+    <div class="hero-unit">
+        <p class="">
+
+            {{ quote.avatar_html| safe }}
+        </p>
+        <h1>{{ quote.quote }}</h1>
+        {% if quote.comeback %}
+            <h2 class="comeback">{{ quote.comeback }}</h2>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+{% block footercontent %}
+
+{% endblock %}
