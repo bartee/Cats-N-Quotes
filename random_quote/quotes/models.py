@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Tag(models.Model):
+    """
+    A tag, that you can use as an identifier in the rest
+    """
+    name = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.name
+
 # Create your models here.
 class Quote(models.Model):
     quote = models.CharField(max_length=255,help_text='De Quote')
@@ -8,6 +17,7 @@ class Quote(models.Model):
     original_author = models.CharField(max_length=100, help_text='wie heeft hem in het leven geroepen? Vul zijn/haar email adres in om een Gravatar op te halen', blank=True)
     author = models.ForeignKey(User,verbose_name='User')
     pub_date = models.DateTimeField('date published',auto_now_add=True,editable=False)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     def __unicode__(self):
         return self.quote
@@ -47,8 +57,12 @@ class Quote(models.Model):
 
 class BackgroundImage(models.Model):
     url = models.URLField(max_length=200)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     def background_thumb(self):
         return u'<img src="%s" width="100" />' % self.url
 
     background_thumb.allow_tags = True
+
+    def __unicode__(self):
+        return self.url

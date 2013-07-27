@@ -17,14 +17,19 @@ class HomeView(TemplateView):
 
         """
 
-        number_of_records = Quote.objects.all().values('id')
+        quote_ids = Quote.objects.all().values('id')
         from random import choice, randint
-        random_index = choice(number_of_records).get('id')
+        random_index = choice(quote_ids).get('id')
         quote = Quote.objects.get(pk=random_index)
+        tags = quote.tags.all()
+
         # Background
-        number_of_records = BackgroundImage.objects.all().values('id')
-        from random import choice, randint
-        random_index = choice(number_of_records).get('id')
+        if len(tags) > 0:
+            background_ids = BackgroundImage.objects.filter(tags__in=tags).values('id')
+        else:
+            background_ids = BackgroundImage.objects.all().values('id')
+
+        random_index = choice(background_ids).get('id')
         background = BackgroundImage.objects.get(pk=random_index)
 
         context = super(HomeView,self).get_context_data(**kwargs)
