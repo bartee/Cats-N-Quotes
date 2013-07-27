@@ -1,7 +1,7 @@
 __author__ = 'bartstroeken'
 
 from django.contrib import admin
-from quotes.models import Quote, BackgroundImage
+from models import Quote, BackgroundImage, Meme
 
 class QuoteAdmin(admin.ModelAdmin):
     list_display = ['quote', 'comeback','author','avatar_html']
@@ -11,5 +11,5 @@ class BackgroundImageAdmin(admin.ModelAdmin):
     list_display = ['background_thumb']
     # list_editable = ['comeback', 'author']
 
-admin.site.register(Quote, QuoteAdmin)
+admin.site.register(Quote, QuoteAdmin, Meme)
 admin.site.register(BackgroundImage, BackgroundImageAdmin)

@@ -3,8 +3,9 @@ __author__ = 'Andrew Gerssen'
 from django.shortcuts import get_object_or_404
 from django.views.generic.base import TemplateView
 from models import Quote, BackgroundImage
+from random import choice
 
-class DetailView(TemplateView):
+class QuoteView(TemplateView):
     """
     Get and render a random quote, and a button to refresh it.
     """
@@ -15,17 +16,19 @@ class DetailView(TemplateView):
         Get a random quote, and put it in the context
 
         """
-        context = super(DetailView, self).get_context_data(**kwargs)
+        context = super(QuoteView, self).get_context_data(**kwargs)
 
         quote = get_object_or_404(Quote, pk=self.id)
-
-        # Background
-        number_of_records = BackgroundImage.objects.all().values('id')
-        from random import choice
-        random_index = choice(number_of_records).get('id')
-        background = BackgroundImage.objects.get(pk=random_index)
-
         context['quote'] = quote
-        context['background_image'] = background.url
+
+        if quote.meme is not None:
+            self.template_name = 'random_meme_quote.html'
+            context['meme'] = quote.meme.image
+        else:
+            # Background
+            number_of_records = BackgroundImage.objects.all().values('id')
+            random_index = choice(number_of_records).get('id')
+            background = BackgroundImage.objects.get(pk=random_index)
+            context['background_image'] = background.url
 
         return context

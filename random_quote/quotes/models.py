@@ -7,7 +7,7 @@ class Quote(models.Model):
     comeback = models.CharField(max_length=255,blank=True, help_text='Wanneer er een nifty comeback is, voeg hem toe')
     original_author = models.CharField(max_length=100, help_text='wie heeft hem in het leven geroepen? Vul zijn/haar email adres in om een Gravatar op te halen', blank=True)
     author = models.ForeignKey(User,verbose_name='User')
-    meme = models.ForeignKey(Meme,verbose_name='Meme')
+    #meme = models.ForeignKey(Meme,verbose_name='Meme')
 
     pub_date = models.DateTimeField('date published',auto_now_add=True,editable=False)
 
@@ -57,7 +57,7 @@ class BackgroundImage(models.Model):
 
 class Meme(models.Model):
     title = models.CharField(max_length=255,help_text='Titel van meme')
-    image = models.FileField()
+    image = models.FileField(upload_to='memes')
 
     def __unicode__(self):
         return self.title
