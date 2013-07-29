@@ -36,7 +36,7 @@ class CachedRandomPicker(object):
 
         :param value: item to be stored in the cache.
         """
-        if len(self.cache_values) > self.cache_length:
+        if len(self.cached_values) > self.cache_length:
             self.cached_values.pop(0)
         self.cached_values.append(value)
         # Store that value in the cache

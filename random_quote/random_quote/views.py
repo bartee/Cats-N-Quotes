@@ -19,18 +19,19 @@ class HomeView(TemplateView):
         """
 
         quote_ids = Quote.objects.all().values('id')
-        quote_random_picker = CachedRandomPicker(quote_ids, 'random_quotes', 0.2)
+
+        quote_random_picker = CachedRandomPicker([item.get('id') for item in quote_ids], 'random_quotes', 0.2)
         quote = Quote.objects.get(pk=quote_random_picker.random())
 
         tags = quote.tags.all()
 
         all_background_ids = BackgroundImage.objects.all().values('id')
-        background_random_picker = CachedRandomPicker(all_background_ids,'background_ids')
-        
+        background_random_picker = CachedRandomPicker([item.get('id') for item in all_background_ids],'background_ids')
+
         # Background selection
         if len(tags) > 0:
             background_ids = BackgroundImage.objects.filter(tags__in=tags).values('id')
-            background = background_random_picker.random_from_subset(background_ids)
+            background = background_random_picker.random_from_subset([item.get('id') for item in background_ids])
         else:
             background = background_random_picker.random()
         background = BackgroundImage.objects.get(pk=background)
