@@ -4,6 +4,7 @@ __author__ = 'bartstroeken'
 from quotes.models import Quote, BackgroundImage
 from random import random
 from django.views.generic.base import TemplateView
+from quotes.util import CachedRandomPicker
 
 class HomeView(TemplateView):
     """
@@ -18,19 +19,21 @@ class HomeView(TemplateView):
         """
 
         quote_ids = Quote.objects.all().values('id')
-        from random import choice, randint
-        random_index = choice(quote_ids).get('id')
-        quote = Quote.objects.get(pk=random_index)
+        quote_random_picker = CachedRandomPicker(quote_ids, 'random_quotes', 0.2)
+        quote = Quote.objects.get(pk=quote_random_picker.random())
+
         tags = quote.tags.all()
 
-        # Background
+        all_background_ids = BackgroundImage.objects.all().values('id')
+        background_random_picker = CachedRandomPicker(all_background_ids,'background_ids')
+        
+        # Background selection
         if len(tags) > 0:
             background_ids = BackgroundImage.objects.filter(tags__in=tags).values('id')
+            background = background_random_picker.random_from_subset(background_ids)
         else:
-            background_ids = BackgroundImage.objects.all().values('id')
-
-        random_index = choice(background_ids).get('id')
-        background = BackgroundImage.objects.get(pk=random_index)
+            background = background_random_picker.random()
+        background = BackgroundImage.objects.get(pk=background)
 
         context = super(HomeView,self).get_context_data(**kwargs)
         context['quote'] = quote
