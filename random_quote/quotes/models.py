@@ -47,13 +47,20 @@ class Quote(models.Model):
         return username
 
 
-    def avatar_html(self):
+    def avatar_html(self, size=200):
         admin_user = User.objects.get(pk=1)
         if self.author != admin_user:
-            return u'<img src="%s" title="%s" width="160"/>' % (self.avatar, self.author.first_name+" "+self.author.last_name)
+            url = self.avatar +'?s=%s' % size
+            width = (80 * size) /100
+            return u'<img src="%s" title="%s" width="%s"/>' % (url, self.author.first_name+" "+self.author.last_name, width)
         return u'<img src="%s" />' % self.avatar
 
     avatar_html.allow_tags = True
+
+    def avatar_admin_html(self):
+        return self.avatar_html(50)
+
+    avatar_admin_html.allow_tags = True
 
 class BackgroundImage(models.Model):
     url = models.URLField(max_length=200)

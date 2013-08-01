@@ -4,7 +4,7 @@ from django.contrib import admin
 from quotes.models import Quote, BackgroundImage, Tag
 
 class QuoteAdmin(admin.ModelAdmin):
-    list_display = ['quote', 'comeback','quote_tags','author','avatar_html']
+    list_display = ['quote', 'comeback','quote_tags','author','avatar_admin_html']
     list_filter = ['author', 'original_author']
 
     def quote_tags(self, obj):
