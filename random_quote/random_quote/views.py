@@ -20,4 +20,6 @@ class HomeView(QuoteView):
         number_of_records = Quote.objects.all().values('id')
         random_index = choice(number_of_records).get('id')
 
-        return super(HomeView, self).get_context_data(id=random_index)
+        kwargs = {'id':random_index}
+
+        return super(HomeView, self).get_context_data(**kwargs)

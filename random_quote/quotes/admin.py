@@ -11,5 +11,6 @@ class BackgroundImageAdmin(admin.ModelAdmin):
     list_display = ['background_thumb']
     # list_editable = ['comeback', 'author']
 
-admin.site.register(Quote, QuoteAdmin, Meme)
+admin.site.register(Quote, QuoteAdmin)
+admin.site.register(Meme)
 admin.site.register(BackgroundImage, BackgroundImageAdmin)

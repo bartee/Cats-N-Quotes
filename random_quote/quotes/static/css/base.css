@@ -38,6 +38,30 @@
     top:10px;
     right: 10px;
 }
+
+.meme-unit img.meme{
+    width: 100%;
+}
+
+.meme-unit h1, h2{
+    font-family: Impact;
+    letter-spacing: 2px;
+    margin: 0;
+    padding: 5px;
+    background: #000;
+    color: #fff;
+}
+
+.meme-unit .social{
+    background: #000;
+    width: 125px;
+    float: right;
+    font-size: 40px;
+    color: #fff;
+    text-align: right;
+    padding: 10px;
+}
+
 .modal.fade.in {
     z-index: 3;
 }
