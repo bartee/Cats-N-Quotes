@@ -10,12 +10,25 @@ class Tag(models.Model):
     def __unicode__(self):
         return self.name
 
-# Create your models here.
+class Meme(models.Model):
+    title = models.CharField(max_length=255,help_text='Titel van meme')
+    image = models.FileField(upload_to='memes')
+
+    def __unicode__(self):
+        return self.title
+
+    def meme_thumb(self):
+        return u'<img src="%s" width="100" />' % self.url
+
+    meme_thumb.allow_tags = True
+
 class Quote(models.Model):
     quote = models.CharField(max_length=255,help_text='De Quote')
     comeback = models.CharField(max_length=255,blank=True, help_text='Wanneer er een nifty comeback is, voeg hem toe')
     original_author = models.CharField(max_length=100, help_text='wie heeft hem in het leven geroepen? Vul zijn/haar email adres in om een Gravatar op te halen', blank=True)
     author = models.ForeignKey(User,verbose_name='User')
+    meme = models.ForeignKey(Meme,verbose_name='Meme',blank=True,null=True)
+
     pub_date = models.DateTimeField('date published',auto_now_add=True,editable=False)
     tags = models.ManyToManyField(Tag, blank=True)
 

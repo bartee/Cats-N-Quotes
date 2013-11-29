@@ -1,7 +1,7 @@
 __author__ = 'bartstroeken'
 
 from django.contrib import admin
-from quotes.models import Quote, BackgroundImage, Tag
+from quotes.models import Quote, BackgroundImage, Tag, Meme
 
 class QuoteAdmin(admin.ModelAdmin):
     list_display = ['quote', 'comeback','quote_tags','author','avatar_admin_html']
@@ -24,5 +24,6 @@ class TagAdmin(admin.ModelAdmin):
     list_display = ['name']
 
 admin.site.register(Quote, QuoteAdmin)
+admin.site.register(Meme)
 admin.site.register(BackgroundImage, BackgroundImageAdmin)
 admin.site.register(Tag, TagAdmin)

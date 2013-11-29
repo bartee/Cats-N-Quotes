@@ -2,11 +2,12 @@ __author__ = 'bartstroeken'
 
 
 from quotes.models import Quote, BackgroundImage
-from random import random
 from django.views.generic.base import TemplateView
 from quotes.util import CachedRandomPicker
+from quotes.views import QuoteView
+from random import choice, random
 
-class HomeView(TemplateView):
+class HomeView(QuoteView):
     """
     Get and render a random quote, and a button to refresh it.
     """
@@ -35,9 +36,9 @@ class HomeView(TemplateView):
         else:
             background = background_random_picker.random()
         background = BackgroundImage.objects.get(pk=background)
+        number_of_records = Quote.objects.all().values('id')
+        random_index = choice(number_of_records).get('id')
 
-        context = super(HomeView,self).get_context_data(**kwargs)
-        context['quote'] = quote
-        context['background_image'] = background.url
+        kwargs = {'id':random_index}
 
-        return context
+        return super(HomeView, self).get_context_data(**kwargs)
