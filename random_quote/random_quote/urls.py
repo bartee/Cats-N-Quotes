@@ -1,7 +1,9 @@
+import settings
+
 from django.conf.urls import patterns, include, url
 from views import HomeView
-import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from quotes.urls import urlpatterns as quote_patterns
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -15,5 +17,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.MEDIA_ROOT})
-)
+) + quote_patterns
 urlpatterns += staticfiles_urlpatterns()

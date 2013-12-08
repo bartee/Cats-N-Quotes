@@ -3,6 +3,8 @@ __author__ = 'Andrew Gerssen'
 from django.shortcuts import get_object_or_404
 from django.views.generic.base import TemplateView
 from models import Quote, BackgroundImage
+from django.core.urlresolvers import reverse
+from random import choice
 
 class QuoteView(TemplateView):
     """
@@ -19,7 +21,7 @@ class QuoteView(TemplateView):
 
         quote = get_object_or_404(Quote, pk=kwargs['id'])
         context['quote'] = quote
-        context['url'] = url('QuoteView')
+        context['url'] = reverse('detail', args=[quote.id,])
 
         if quote.meme is not None:
             self.template_name = 'meme_quote.html'
