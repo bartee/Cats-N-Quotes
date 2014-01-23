@@ -43,7 +43,8 @@
     width: 100%;
 }
 
-.meme-unit h1, h2{
+.meme-unit h1,
+.meme-unit h2{
     font-family: Impact;
     letter-spacing: 2px;
     margin: 0;
