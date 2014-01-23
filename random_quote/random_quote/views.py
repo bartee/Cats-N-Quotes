@@ -12,7 +12,7 @@ class HomeView(QuoteView):
     """
     Get and render a random quote, and a button to refresh it.
     """
-    template_name = 'random_quote.html'
+    template_name = 'detail_quote.html'
 
     def get_context_data(self, **kwargs):
         """

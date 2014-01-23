@@ -6,17 +6,48 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/font-awesome.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
+    <meta name="author" content="A Random Quote Generator by Bart Stroeken - https://twitter.com/bartstroeken" />
+<!--
+             .-=. ___
+  __ . __ .-;-%%i:-%%, ___________________________________________
+ |   ==. / /,.-.;--:/ _,                                          |
+ |  '"-\j  /    \   \====   ______________________________________|______
+ |    ,%% i      |   %.    |============ Cats - n - Quotes ============= |
+ |   ,;"""t_____ |__,|".   |================= A random Quote Generator = |::
+ |   i%%.  \+ `'"f`','%|   |                                             |::
+ |   |;"  .-`.__.O-< "`;   | Get the code on github:                     |::
+ |   `%+  (_,+--'"\_)%/    | https://github.com/bartee/Cats-N-Quotes     |::
+ |    `.%% %"     ._%/     |_____________________________________________|::
+ |     __+.,-.    ' %.  o    :::::::::::::::::::::::::::::::::::::::::::::::
+ |   ,( j-"". `.  ,%%|   o                                        |
+ | .'-;`. )  )-'  "" :.    O      .---._.-. .-""-._               |
+ | (  [ `-'`-' .  ,.%%i       O ."         "       ".             |
+ |  `-\.__ ..-"    ""`]         |    Big deal...    )             |
+ |    t.  "       ..%%f         `.___   _____     _.'             |
+ |     \,         ."";              `--'     `---'                |
+ |      >. ,-.    ,_%       ______________________________________|_____________________________________________
+ |     ,' i  t/  f:%       |                                                                                    |
+ |     ( `'   t ,' j       | Do you like it? Buy me a beer:                                                     |::
+ |______`.. `. \;  %+.--. _|                                                                                    |::
+  ,--.._  `.  `.t,  % -=%%:| https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A8S6KSX88NERU |::
+ j ,    "`-|   ) +"\. -=%/ |                                                                                    |::
+ (( f      t  "t" ) J..-"  |                                                                                    |::
+  \_\  ,.__.\.  ).-"       | And to give you something nice to look at, we'll give you some more cats:          |::
+      ""      "-"          |                                                                                    |::
+                           |____________________________________________________________________________________|::
+                             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+{% include random_cat_template %}
+-->
 </head>
 <body >
-
     <div class="content container ">
     {% block content %}
     {% endblock %}
     </div>
     {% block footercontent %}
-    {% endblock %}
 
+    {% endblock %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.1.10.2.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/base.js"></script>

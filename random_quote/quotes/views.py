@@ -5,6 +5,8 @@ from django.views.generic.base import TemplateView
 from quotes.util import CachedRandomPicker
 from models import Quote, BackgroundImage
 from django.core.urlresolvers import reverse
+from django.conf import settings
+from os import listdir
 from random import choice
 
 class QuoteView(TemplateView):
@@ -38,6 +40,13 @@ class QuoteView(TemplateView):
             # Background
             background = self.get_background(tags)
             context['background_image'] = background.url
+
+        random_cat_template = 'little_spinner'
+
+        dir = settings.PROJECT_ROOT +'/quotes/templates/cats/'
+        templates = listdir(dir)
+        context['random_cat_template'] = 'cats/' + choice(templates)
+
         return context
 
     def get_background(self, tags=False):

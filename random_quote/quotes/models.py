@@ -47,6 +47,7 @@ class Quote(models.Model):
             email = self.author.email
         import hashlib
         value = hashlib.md5(email)
+
         return 'http://www.gravatar.com/avatar/%s' % value.hexdigest() + '?s=200'
 
     @property
@@ -65,7 +66,8 @@ class Quote(models.Model):
         if self.author != admin_user:
             url = self.avatar +'?s=%s' % size
             width = (80 * size) /100
-            return u'<img src="%s" title="%s" width="%s"/>' % (url, self.author.first_name+" "+self.author.last_name, width)
+            name = self.author.first_name+" "+self.author.last_name
+            return u'<img src="%s" title="%s" width="%s" alt="%s"/>' % (url, name, width, name)
         return u'<img src="%s" />' % self.avatar
 
     avatar_html.allow_tags = True

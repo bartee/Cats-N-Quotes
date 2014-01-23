@@ -70,3 +70,10 @@
 .modal-backdrop {
     z-index: 2;
 }
+
+.footnote {
+    opacity: 0.5;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
