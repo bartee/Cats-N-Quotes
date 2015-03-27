@@ -6,7 +6,7 @@ from random import choice, randint
 
 class CachedRandomPicker(object):
 
-    def __init__(self, items, cache_key, cache_fraction=0.1):
+    def __init__(self, items, cache_key, cache_fraction=0.1, ttl=None):
         """
         Pick a random number from a list of values.
         Cache the last items, and exclude them from the list, to improve randomness.
@@ -14,12 +14,14 @@ class CachedRandomPicker(object):
         items: the list of items to handle
         cache_key: the cache key to be used
         cache_fraction: the items size fraction to be stored in cache. Increasing this number (between 0 and 1) will improve randomness
+        ttl: the expiry timeout of the cached item
 
 
         """
         self.cache_key = cache_key
         self.items = items
         self.cache_fraction = cache_fraction
+        self.ttl = ttl
 
     def get_from_cache(self):
         """
@@ -40,7 +42,7 @@ class CachedRandomPicker(object):
             self.cached_values.pop(0)
         self.cached_values.append(value)
         # Store that value in the cache
-        cache.set(self.cache_key, self.cached_values)
+        cache.set(self.cache_key, self.cached_values, self.ttl)
 
     def random(self):
         """
