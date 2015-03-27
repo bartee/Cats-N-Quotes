@@ -2,6 +2,9 @@
 {% block pagetitle %}
     {{ quote.authorname }}'s Fabulous Quotes - and a picture of cats
 {% endblock %}
+{% block extra_header %}
+<link rel="canonical" href="{% url 'detail' quote.id %}" />
+{% endblock %}
 {% block content %}
 
     <div class="hero-unit">
