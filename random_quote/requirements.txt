@@ -1,4 +1,4 @@
-Django==1.5.1
+Django==2.2.24
 mysql-python
 South==0.8.1
 dj-database-url==0.2.1
